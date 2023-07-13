@@ -2,12 +2,22 @@ $bgcolor:rgb(74, 122, 201);
 
 body{
     margin: 0;
+    padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .app{
+    display: flex;
+    justify-content: center;
+
+    .link{
+        text-decoration: none;
+        color: inherit;
+    }
+
+
     .container{
-        //LOGIN AND REGISTER
+        width: 1024px;
         .auth{
             display: flex;
             flex-direction: column;
@@ -48,6 +58,60 @@ body{
                     text-align: center;
                 }
             }
+        }
+        .navbar {
+            .container {
+              padding: 10px 0px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .logo {
+                img {
+                  width: 120px;
+                }
+              }
+              .links {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+      
+                h6 {
+                  font-size: 16px;
+                  font-weight: 300;
+                }
+      
+                span {
+                  cursor: pointer;
+                }
+      
+                .write {
+                  background-color: $bgcolor;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 300;
+                  border: 1px solid white;
+                  color: white;
+      
+                  &:hover {
+                    color: rgb(89, 163, 163);
+                    background-color: white;
+                    border: 1px solid rgb(84, 102, 102);
+                  }
+                }
+              }
+            }
+          }
+        .home{
+        }
+
+        .singleBlog{
+        }
+
+        .write{
         }
     }
 }

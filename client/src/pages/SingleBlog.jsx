@@ -2,7 +2,7 @@ import React from 'react'
 
 const SingleBlog = () => {
   return (
-    <div>SingleBlog</div>
+    <div className='singleBlog'>SingleBlog xssssssdcfvgbhnjmkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</div>
   )
 }
 
