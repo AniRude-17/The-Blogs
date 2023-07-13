@@ -3,6 +3,7 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import "./style.scss";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -52,7 +53,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router}/>
+  return (
+    <div className="app">
+      <div className="container">
+      <RouterProvider router={router}/>
+      </div>
+    </div>
+  )
 }
 
 export default App;

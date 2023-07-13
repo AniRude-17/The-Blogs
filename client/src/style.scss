@@ -1,0 +1,55 @@
+$bgcolor:rgb(74, 122, 201);
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app{
+    .container{
+        //LOGIN AND REGISTER
+        .auth{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: $bgcolor;
+
+            h1{
+                font-size:25px;
+                color:rgb(255, 255, 255);
+                margin-bottom: 20px;
+            }
+
+            form{
+                display:flex;
+                flex-direction: column;
+                padding: 50px;
+                background-color: white;
+                width: 200px;
+                gap: 20px;
+
+                input{
+                    padding: 10px;
+                    border:none;
+                    border-bottom: 1px solid gray;
+                }
+
+                button{
+                    padding: 10px;
+                    border: none;
+                    background-color: rgb(140, 185, 122);
+                    cursor: pointer;
+                    color: white;
+                }
+                span{
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+
