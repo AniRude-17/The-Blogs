@@ -106,15 +106,39 @@ body{
             }
           }
         .home{
-            background-color: cadetblue;
             .posts{
                 display: flex;
                 flex-direction: column;
                 gap: 150px;
 
                 .post{
-                    background-color: chocolate;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 20px;
+                    img{
+                        height: 300px;
+                        width: 300px;
+                    }
+                    .content{
+                        .title{
+                            font-size: 30px;
+                            text-decoration: none;
+                            color: black;
+                        }
+
+                        button{
+                            border: 1px solid blue;
+                            padding: 8px;
+                            background-color: white;
+                            &:hover{
+                                background-color: aquamarine;
+                            }
+                        }
+
+                    }
                 }
+
+
             }
         }
 
