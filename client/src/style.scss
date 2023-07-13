@@ -106,6 +106,16 @@ body{
             }
           }
         .home{
+            background-color: cadetblue;
+            .posts{
+                display: flex;
+                flex-direction: column;
+                gap: 150px;
+
+                .post{
+                    background-color: chocolate;
+                }
+            }
         }
 
         .singleBlog{
@@ -118,6 +128,7 @@ body{
             margin-top: 300px;
             padding: 20px;
             text-align: center;
+            background-color: $bgcolor;
         }
 
 
