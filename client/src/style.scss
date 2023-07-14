@@ -284,6 +284,12 @@ body{
                             padding: 3px 5px;
                         }
                     }
+                    .cat{
+                        display: flex;
+                        align-items: center;
+                        gap: 2px;
+                        color: teal;
+                    }
                 }
             }
         }
