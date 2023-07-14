@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Menu from '../components/Menu'
 const SingleBlog = () => {
   return (
     <div className='single'>
@@ -31,7 +32,7 @@ Class aptent taciti sociosqu<br/><br/> ad litora torquent per conubia nostra, pe
 
 Integer tincidunt sollicitudin leo, et placerat neque sodales ac. <br/> <br/>Ut pretium tellus fringilla mi sagittis varius. Pellentesque vulputate justo sit amet magna sagittis rhoncus. Integer ut lectus semper enim hendrerit sollicitudin. Nulla ac augue lacus. Ut finibus semper sem aliquam ornare. Morbi eget tempus lacus, id scelerisque lorem. Mauris tellus odio, commodo sed lacinia in, laoreet vitae elit. Donec magna lorem, commodo eu ipsum a, hendrerit rhoncus massa. Phasellus lectus est, consectetur non dui id, dignissim dapibus velit. Nunc eget ipsum ullamcorper, blandit magna et, ultrices nisi. Proin posuere sem odio, id tincidunt leo dapibus vel. In finibus semper imperdiet. Nunc aliquam imperdiet nunc viverra tincidunt. Fusce quis malesuada orci, quis pretium mauris. Vestibulum ornare pellentesque massa non aliquet.</p>
       </div>
-      <div className="menu">m</div>
+    <Menu/>
     </div>
   )
 }
