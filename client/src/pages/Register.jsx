@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-const Login = () => {
+
+
+const Register = () => {
 
   const [inputs,setInputs] = useState({
     username:"",
@@ -9,7 +11,10 @@ const Login = () => {
     password:"",
   })
 
-  console.log(inputs)
+  const [err,setError] = useState("yo")
+
+  const navigate = useNavigate()
+
 
   const handleChange = e =>{
     setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
@@ -19,10 +24,10 @@ const Login = () => {
     e.preventDefault()
     try{
       const res=await axios.post("http://localhost:1234/api/auth/register", inputs)
-      console.log(res)
+      navigate('/login')
     }
     catch(err){
-      console.log(err)
+      setError(err.response.data)
     }
 
   }
@@ -36,10 +41,11 @@ const Login = () => {
         <input required type='email' placeholder='email' name='email' onChange={handleChange}/>
         <input required type="password" placeholder='passowrd' name='password' onChange={handleChange}/>
         <button onClick={handleSubmit}>Register</button>
+        { err && <p> { err } </p>}
         <span>Already have an account <Link to='/login'> Login</Link></span>
       </form>
     </div>
   )
 }
 
-export default Login
+export default Register
