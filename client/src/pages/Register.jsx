@@ -11,7 +11,7 @@ const Register = () => {
     password:"",
   })
 
-  const [err,setError] = useState("yo")
+  const [err,setError] = useState(null)
 
   const navigate = useNavigate()
 
