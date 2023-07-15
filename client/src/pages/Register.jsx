@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-const Login = () => {
+const Register = () => {
 
   const [inputs,setInputs] = useState({
     username:"",
@@ -42,4 +42,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
