@@ -46,13 +46,13 @@ const Home = () => {
             </div>
             <div className="content">
               {/* Rendering a link to the post page */}
-              <Link className="link" to={`http://localhost:1234/api/post/${post.id}`}>
+              <Link className="link" to={`/post/${post.id}`}>
                 <h1>{post.title}</h1>
               </Link>
               {/* Rendering the post description */}
               <p>{getText(post.desc)}</p>
               {/* Rendering a button to read more */}
-              <Link className="link" to={`http://localhost:1234/api/post/${post.id}`}>
+              <Link className="link" to={`post/${post.id}`}>
                 <button>Read More</button>
               </Link>
             </div>

@@ -1,47 +1,42 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const Menu = () => {
+// Defining a functional component named Menu which takes a single prop named cat
+const Menu = ({ cat }) => {
+  // Initializing posts state with an empty array using useState hook
+  const [posts, setPosts] = useState([]);
 
-    const posts=[
-        {
-          id:1,
-          title:"lONE BLOG A DAY ABCD EFGHIJK LMN OP QRSTUVWXY XZAB",
-          desc:"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-          img:"https://picsum.photos/300/300",
-        },
-        {
-          id:2,
-          title:"RFTVGBHNJMK",
-          desc:"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-          img:"https://picsum.photos/300/300",
-        },
-        {
-          id:3,
-          title:"RANDOM TITLE 222",
-          desc:"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-          img:"https://picsum.photos/300/300",
-        },
-        {
-          id:4,
-          title:"tITLE RANDOME",
-          desc:"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-          img:"https://picsum.photos/300/300",
-        },
-      ];
+  // useEffect hook is used to fetch posts related to the category
+  useEffect(() => {
+    // Defining an async function fetchData to fetch posts related to the category using axios
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:1234/api/posts/?cat=${cat}`);
+        setPosts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    // Calling fetchData function to fetch data when component is mounted or when category is changed
+    fetchData();
+  }, [cat]);
+
   return (
-    <div className='menu'>
-        <h1>
-            Other Posts you may like
-        </h1>
-        {posts.map((post)=>(
-            <div className='post' key={post.id}>
-                <img src={post.img}/>
-                <h2>{post.title}</h2>
-                <button>Read More</button>
-            </div>
-        ))}
+    <div className="menu">
+      <h1>Other posts you may like</h1>
+      {posts.map((post) => (
+        <div className="post" key={post.id}>
+          <img src={`${post.img}`} alt="post cover" />
+          <h2>{post.title}</h2>
+          {/* Using Link component to navigate to the post */}
+          <Link className="link" to={`/post/${post.id}`}>
+            <button>Read More</button>
+          </Link>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;
