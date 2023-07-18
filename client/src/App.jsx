@@ -11,7 +11,7 @@ import Write from "./pages/Write";
 import SingleBlog from "./pages/SingleBlog";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import { AuthContextProvider } from "./context/authContext";
 const Layout = () => {
   return (
     <>
