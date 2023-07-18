@@ -1,51 +1,69 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
 
 
+// Define a functional component called Login
 const Login = () => {
-  const [inputs,setInputs] = useState({
-    username:"",
-    password:"",
-  })
+  // Use useState hook to create state variables for inputs and errors
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
 
-  const [err,setError] = useState(null)
+  const [err, setError] = useState(null);
 
-  const navigate = useNavigate()
+  // Use useNavigate hook to create a navigate function
+  const navigate = useNavigate();
 
+  // Define handleChange function to update the input state variables when the user types into the input fields
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  const handleChange = e =>{
-    setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
-  }
+   //useContext hook to get the login function from the AuthContext.  
+   const { login } = useContext(AuthContext);  
 
-  const handleSubmit = async e =>{
-    e.preventDefault()
-    try{
-      const res=await axios.post("http://localhost:1234/api/auth/login", inputs)
-      navigate('/login')
-    }
-    catch(err){
-      setError(err.response.data)
-    }
+   // Define handleSubmit function to handle the form submission when the user clicks the submit button
+   const handleSubmit = async (e) => {
+     e.preventDefault();
+     try {
+       // Post the user input to the "/auth/login" endpoint and navigate to the home page
+       await login(inputs); // new login function
+       navigate("/");
+     } catch (err) {
+       // If there is an error, set the error state variable to the error message
+       setError(err.response.data);
+     }
+   };
 
-  }
-
-
-
-
+  // Render the login form with input fields for username and password and a button to submit the form
   return (
-    <div className='auth'>
+    <div className="auth">
       <h1>Login</h1>
       <form>
-        <input required  type="text" placeholder='username'/>
-        <input required  type="password" placeholder='passowrd'/>
+        <input
+          type="text"
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+        />
         <button onClick={handleSubmit}>Login</button>
         {err && <p>{err}</p>}
-        <span>Don't have an account <Link to='/register'> Register</Link></span>
+        <span>
+          Don't you have an account? <Link to="/register">Register</Link>
+        </span>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
