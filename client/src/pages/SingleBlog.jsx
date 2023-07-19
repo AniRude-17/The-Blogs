@@ -55,7 +55,7 @@ const SingleBlog = () => {
     <div className="single">
       <div className="content">
         {/* Render the post image. */}
-        <img src={`${post?.img}`} alt="post cover" />
+        <img src={`../upload/${post.img}`} alt="post cover" />
         <div className="user">
           {/* Render the user image if it exists. */}
           {post.userImg && <img src={post.userImg} alt="user" />}
@@ -76,7 +76,7 @@ const SingleBlog = () => {
         </div>
         {/* Render the post title and description. */}
         <h1>{post.title}</h1>
-        <i>"{getText(post.desc)}"</i>
+        <div dangerouslySetInnerHTML={{ __html: post.desc }}></div>
         
       </div>
       <Menu cat={post.cat} />
