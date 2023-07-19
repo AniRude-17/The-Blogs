@@ -44,30 +44,31 @@ const Write = () => {
     const imgUrl = await upload();
 
     try {
-      const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).access_token : null;
-      const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      };
+      // const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : null;
+      var token = JSON.parse(localStorage.getItem('user'));
+      console.log(token.token);
       state
         ? await axios.put(`http://localhost:1234/api/posts/${state.id}`, {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",headers,
+            img: file ? imgUrl : "",
+            token:token.token,
           })
         : await axios.post(`http://localhost:1234/api/posts/`, {
             title,
             desc: value,
             cat,
             img: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),headers,
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+            token: token.token,
           });
 
       // Navigate to the homepage after the post is saved or updated
       navigate("/");
     } catch (err) {
       console.log(err);
+      console.log(token.token);
     }
   };
 

@@ -61,14 +61,12 @@ export const register = (req, res) => {
   
       // Remove the password from the user data
       const { password, ...other } = data[0];
-  
+      const userData = { ...other, token };
+
       // Set the token as a http-only cookie and send user data as response
       res
-        .cookie("access_token", token, {
-          httpOnly: true,
-        })
         .status(200)
-        .json(other);
+        .json(userData);
     });
   };
   
