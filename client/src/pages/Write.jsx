@@ -27,7 +27,7 @@ const Write = () => {
       formData.append("file", file);
 
       // Send a POST request to upload the file
-      const res = await axios.post("/upload", formData);
+      const res = await axios.post("http://localhost:1234/api/upload", formData);
 
       // Return the filename of the uploaded file
       return res.data;
@@ -44,21 +44,24 @@ const Write = () => {
     const imgUrl = await upload();
 
     try {
-      // Send a PUT request to update a post if the location state is defined (writing),
-      // otherwise send a POST request to create a new post
+      const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).access_token : null;
+      const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      };
       state
         ? await axios.put(`http://localhost:1234/api/posts/${state.id}`, {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
+            img: file ? imgUrl : "",headers,
           })
         : await axios.post(`http://localhost:1234/api/posts/`, {
             title,
             desc: value,
             cat,
             img: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),headers,
           });
 
       // Navigate to the homepage after the post is saved or updated
@@ -69,7 +72,7 @@ const Write = () => {
   };
 
   return (
-    <div className="add">
+    <div className="write">
       <div className="content">
         <input
           type="text"
@@ -88,12 +91,6 @@ const Write = () => {
       <div className="menu">
         <div className="item">
           <h1>Publish</h1>
-          <span>
-            <b>Status: </b> Draft
-          </span>
-          <span>
-            <b>Visibility: </b> Public
-          </span>
           <input
             style={{ display: "none" }}
             type="file"
@@ -105,7 +102,6 @@ const Write = () => {
             Upload Image
           </label>
           <div className="buttons">
-            <button>Save as a draft</button>
             <button onClick={handleClick}>Publish</button>
           </div>
         </div>
