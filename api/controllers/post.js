@@ -48,10 +48,12 @@ export const addPost = (req, res) => {
     const q =
       "INSERT INTO posts(`title`, `desc`, `img`, `cat`, `date`,`uid`) VALUES (?)";
 
+      const Image = req.body.img || 'default-blogpost.png';
+
     const values = [
       req.body.title,
       req.body.desc,
-      req.body.img,
+      Image,
       req.body.cat,
       req.body.date,
       userInfo.id,
