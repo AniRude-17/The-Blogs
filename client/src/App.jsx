@@ -14,11 +14,11 @@ import Footer from "./components/Footer";
 import { AuthContextProvider } from "./context/authContext";
 const Layout = () => {
   return (
-    <>
+    <div className="layout">
     <Navbar/>
     <Outlet/>
     <Footer/>
-    </>
+    </div>
   )
 }
 
