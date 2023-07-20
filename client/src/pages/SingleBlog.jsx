@@ -75,8 +75,8 @@ const SingleBlog = () => {
           )}
         </div>
         {/* Render the post title and description. */}
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.desc }}></div>
+        <h1 className="blog-title">{post.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: post.desc }} className="blog-content"></div>
         
       </div>
       <Menu cat={post.cat} />
