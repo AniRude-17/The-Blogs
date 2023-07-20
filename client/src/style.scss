@@ -1,4 +1,6 @@
-$bgcolor:rgb(74, 122, 201);
+$bgcolor:rgb(111, 118, 131);
+$contentbg:blue;
+
 
 body{
     margin: 0;
@@ -121,6 +123,12 @@ body{
                     img{
                         height: 300px;
                         width: 300px;
+                    }
+                    p{
+                        width: 100%;
+                        word-break: break-all;
+                        white-space: pre-wrap;
+                        padding-right: 2%;
                     }
                     .content{
                         .title{
