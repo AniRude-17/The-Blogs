@@ -6,45 +6,33 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const Write = () => {
-  // Get the location state using the `useLocation` hook
-  // will be used to check if we are in writing o edit mode
   const state = useLocation().state;
 
-  // Define the state variables
   const [value, setValue] = useState(state?.title || "");
   const [title, setTitle] = useState(state?.desc || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
 
-  // Define the navigate function
   const navigate = useNavigate();
 
-  // Define the upload function
   const upload = async () => {
     try {
-      // Create a new FormData object and append the file to it
       const formData = new FormData();
       formData.append("file", file);
 
-      // Send a POST request to upload the file
       const res = await axios.post("http://localhost:1234/api/upload", formData);
-
-      // Return the filename of the uploaded file
       return res.data;
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Define the handleClick function to handle the form submission
   const handleClick = async (e) => {
     e.preventDefault();
 
-    // Upload the image and get the filename
     const imgUrl = await upload();
 
     try {
-      // const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : null;
       var token = JSON.parse(localStorage.getItem('user'));
       console.log(token.token);
       state
@@ -64,7 +52,6 @@ const Write = () => {
             token: token.token,
           });
 
-      // Navigate to the homepage after the post is saved or updated
       navigate("/");
     } catch (err) {
       console.log(err);

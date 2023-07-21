@@ -5,37 +5,33 @@ import axios from "axios";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
-    // setting initial state for inputs using useState hook
+  
     username: "",
     email: "",
     password: "",
   });
 
-  const [err, setError] = useState(null); // setting initial state for error using useState hook
+  const [err, setError] = useState(null);
 
-  const navigate = useNavigate(); // using useNavigate hook from react-router-dom to navigate
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
-    // function to handle input changes
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    // using spread operator to spread previous state and update the current input
   };
 
   const handleSubmit = async (e) => {
-    // function to handle form submit
-    e.preventDefault(); // preventing the default form submission behavior
+    e.preventDefault(); 
     try {
-      await axios.post("http://localhost:1234/api/auth/register", inputs); // making a post request to register the user using axios library
-      navigate("/login"); // navigating to login page after successful registration
+      await axios.post("http://localhost:1234/api/auth/register", inputs);
+      navigate("/login"); 
     } catch (err) {
-      // handling errors if any
-      setError(err.response.data); // setting error message from response data
+   
+      setError(err.response.data); 
     }
   };
 
   return (
     <div className="auth">
-      {/* containing the authentication form */}
+     
       <h1>Register</h1>
       <form>
         <input
@@ -43,32 +39,30 @@ const Register = () => {
           type="text"
           placeholder="username"
           name="username"
-          onChange={handleChange} // triggering handleChange function on input change
+          onChange={handleChange} 
         />
         <input
           required
           type="email"
           placeholder="email"
           name="email"
-          onChange={handleChange} // triggering handleChange function on input change
+          onChange={handleChange} 
         />
         <input
           required
           type="password"
           placeholder="password"
           name="password"
-          onChange={handleChange} // triggering handleChange function on input change
+          onChange={handleChange} 
         />
         <button onClick={handleSubmit}>Register</button>{" "}
-        {/* triggering handleSubmit function on form submit */}
-        {err && <p>{err}</p>} {/* displaying error message if there's any */}
+        {err && <p>{err}</p>}
         <span>
           Do you have an account? <Link to="/login">Login</Link>{" "}
-          {/* providing link to login page */}
         </span>
       </form>
     </div>
   );
 };
 
-export default Register; // exporting Register component
+export default Register; 

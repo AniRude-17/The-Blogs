@@ -22,8 +22,6 @@ const Home = () => {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent;
   };
-
-  // Rendering the Home component
   return (
     <div className="home">
       <div className="posts">
